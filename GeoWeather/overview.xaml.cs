@@ -62,7 +62,7 @@ namespace GeoWeather
         }
 
         private void stationsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+        { 
 
         }
     }
