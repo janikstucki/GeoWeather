@@ -7,10 +7,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <TextBox x:Name="stationYCoordinateTBX" HorizontalAlignment="Left" Margin="374,251,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="AliceBlue" TextChanged="StationYCoordinateTBX_TextChanged"/>
-        <TextBox x:Name="stationXCoordinateTBX" HorizontalAlignment="Left" Margin="374,0,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Width="120" Background="AliceBlue" TextChanged="StationXCoordinateTBX_TextChanged"/>
-        <Button x:Name="SubmitBTN" Content="Button" HorizontalAlignment="Left" Margin="414,296,0,0" VerticalAlignment="Top" Click="SubmitBTN_Click"/>
-        <TextBox x:Name="stationNameTBX" HorizontalAlignment="Left" Margin="374,174,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="AliceBlue" TextChanged="StationXCoordinateTBX_TextChanged"/>
+        <TextBox x:Name="stationYCoordinateTBX" HorizontalAlignment="Center" Margin="0,196,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="AliceBlue" TextChanged="StationYCoordinateTBX_TextChanged" TabIndex="3" />
+        <TextBox x:Name="stationXCoordinateTBX" HorizontalAlignment="Center" Margin="0,163,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="AliceBlue" TextChanged="StationXCoordinateTBX_TextChanged" TabIndex="2" />
+        <TextBox x:Name="stationNameTBX" HorizontalAlignment="Center" Margin="0,129,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Background="AliceBlue" TextChanged="StationXCoordinateTBX_TextChanged" TabIndex="1" />
+        <Button x:Name="SubmitBTN" Content="Button" HorizontalAlignment="Center" Margin="0,236,0,0" VerticalAlignment="Top" Click="SubmitBTN_Click" IsHitTestVisible="False" TabIndex="4" />
+
+        <Label Content="Neue Wetterstation&#xD;&#xA;" HorizontalAlignment="Center" Margin="0,60,0,0" VerticalAlignment="Top" Width="800" RenderTransformOrigin="1,1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Height="27">
+            <Label.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Label.RenderTransform>
+        </Label>
+        <Button x:Name="overviewWindowBTN" Content="Button" HorizontalAlignment="Left" Margin="44,10,0,0" VerticalAlignment="Top" Click="overviewWindowBTN_Click"/>
 
     </Grid>
 </Window>

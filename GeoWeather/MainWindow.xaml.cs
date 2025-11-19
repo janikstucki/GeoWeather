@@ -62,7 +62,13 @@ namespace GeoWeather
                 }
 
             }
+
+        private void overviewWindowBTN_Click(object sender, RoutedEventArgs e)
+        {
+            overview overviewWindow = new overview(); 
+            overviewWindow.Show(); 
         }
+    }
     
 }
 
