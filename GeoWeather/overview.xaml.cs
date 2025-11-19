@@ -58,7 +58,10 @@ namespace GeoWeather
                     }
                 }
             }
-            stationsListBox.ItemsSource = stations;
+            foreach (Station station in stations)
+            {
+                stationsListBox.Items.Add($"{station.Id}: {station.Name} ({station.XCoordinate}, {station.YCoordinate})");
+            }
         }
 
         private void stationsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
