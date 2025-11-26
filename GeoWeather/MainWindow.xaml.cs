@@ -67,6 +67,7 @@ namespace GeoWeather
         {
             overview overviewWindow = new overview(); 
             overviewWindow.Show(); 
+            this.Close();
         }
     }
     

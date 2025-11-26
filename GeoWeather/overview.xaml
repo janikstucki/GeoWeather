@@ -8,6 +8,7 @@
         Title="overview" Height="450" Width="800">
     <Grid>
         <ListBox x:Name="stationsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="162,94,234,146" SelectionChanged="stationsListBox_SelectionChanged" SelectionMode="Single"/>
+        <Button x:Name="StationOverviewBTN" Content="Button" HorizontalAlignment="Left" Margin="42,32,0,0" VerticalAlignment="Top" Click="stationsListBox_SelectionChanged"/>
 
     </Grid>
 </Window>

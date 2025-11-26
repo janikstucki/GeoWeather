@@ -21,20 +21,6 @@ namespace GeoWeather
     /// </summary>
     public partial class overview : Window
     {
-        public class Station
-        {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public double XCoordinate { get; set; }
-            public double YCoordinate { get; set; }
-
-            public override string ToString()
-            {
-                return $"{Id}: {Name} ({XCoordinate}, {YCoordinate})";
-            }
-        }
-
-
         public overview()
         {
             InitializeComponent();
@@ -65,19 +51,24 @@ namespace GeoWeather
                     }
                 }
             }
-            //foreach (Station station in stations)
-            //{
-
-            //    stationsListBox.Items.Add($"{station.Id}: {station.Name} ({station.XCoordinate}, {station.YCoordinate})");
-            //}
 
             stationsListBox.ItemsSource = stations;
         }
-        private void stationsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {          
-                Station s = (Station)stationsListBox.SelectedItem;
-                MessageBox.Show($"{s.Name} ausgewählt");
+        private void stationsListBox_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+            Station s = (Station)stationsListBox.SelectedItem;
+            StationOverview stationOverview = new StationOverview(s);
+            stationOverview.Show();
+            this.Close();
         }
+
+        private void StationOverviewBTN_click(object sender, RoutedEventArgs e)
+        { 
+
+
+            
+        }
+
 
     }
 }
