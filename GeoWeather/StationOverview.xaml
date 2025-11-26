@@ -8,5 +8,6 @@
         Title="StationOverview" Height="450" Width="800">
     <Grid>
         <Label x:Name="StationLBL" Content="Label" HorizontalAlignment="Left" Margin="137,113,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="stationsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="162,94,234,146" SelectionMode="Single"/>
     </Grid>
 </Window>

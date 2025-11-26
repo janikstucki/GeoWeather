@@ -21,10 +21,11 @@ create table stations
 go
 create table stationData
 (
+	data_id int identity not null primary key,
 	station_id int not null foreign key references stations(station_id),
-	temperatur int not null,
-	humidity int not null,
-	windSpeed int not null,
+	temperatur float not null,
+	humidity float not null,
+	windSpeed float not null,
 	windDirection varchar(10) not null
 );
 go
@@ -35,7 +36,7 @@ insert into stations(name, xCoordinate, yCoordinate) values
 ('North Station', 14.22, -60);
 go
 insert into stationData(station_id, temperatur, humidity, windSpeed, windDirection) values
-(1, 75, 60, 10, 'NW');
+(1, 30, 60, 10, 'NW');
 
 go
 select * from  stations;
