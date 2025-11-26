@@ -31,6 +31,9 @@ go
 insert into stations(name, xCoordinate, yCoordinate) values
 ('Central Station', 34.0522, -118.2437);
 go
+insert into stations(name, xCoordinate, yCoordinate) values
+('North Station', 14.22, -60);
+go
 insert into stationData(station_id, temperatur, humidity, windSpeed, windDirection) values
 (1, 75, 60, 10, 'NW');
 

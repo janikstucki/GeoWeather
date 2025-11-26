@@ -27,13 +27,20 @@ namespace GeoWeather
             public string Name { get; set; }
             public double XCoordinate { get; set; }
             public double YCoordinate { get; set; }
+
+            public override string ToString()
+            {
+                return $"{Id}: {Name} ({XCoordinate}, {YCoordinate})";
+            }
         }
+
 
         public overview()
         {
             InitializeComponent();
 
             List<Station> stations = new List<Station>();
+
 
 
             string query = "SELECT station_id, name, xCoordinate, yCoordinate FROM stations";
@@ -58,15 +65,19 @@ namespace GeoWeather
                     }
                 }
             }
-            foreach (Station station in stations)
-            {
-                stationsListBox.Items.Add($"{station.Id}: {station.Name} ({station.XCoordinate}, {station.YCoordinate})");
-            }
-        }
+            //foreach (Station station in stations)
+            //{
 
+            //    stationsListBox.Items.Add($"{station.Id}: {station.Name} ({station.XCoordinate}, {station.YCoordinate})");
+            //}
+
+            stationsListBox.ItemsSource = stations;
+        }
         private void stationsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        { 
-
+        {          
+                Station s = (Station)stationsListBox.SelectedItem;
+                MessageBox.Show($"{s.Name} ausgewählt");
         }
+
     }
 }
