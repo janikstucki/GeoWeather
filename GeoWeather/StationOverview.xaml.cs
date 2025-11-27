@@ -24,7 +24,8 @@ namespace GeoWeather
             List<StationData> data = new List<StationData>();
 
             string query = "SELECT data_id, station_id, timestamp, temperatur, humidity, windSpeed, windDirection " +
-                           "FROM StationData WHERE station_id = @id";
+                           "FROM StationData WHERE station_id = @id " +
+                           "order by timestamp desc";
 
             string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
 
