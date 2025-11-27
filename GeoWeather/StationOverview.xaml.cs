@@ -12,6 +12,11 @@ namespace GeoWeather
 
             StationLBL.Content = s.ToString();
             LoadStationData(s.Id);
+
+
+            DataGenerator generator = new DataGenerator(s.Id);
+
+            generator.GenerateData();
         }
 
         private void LoadStationData(int stationId)
