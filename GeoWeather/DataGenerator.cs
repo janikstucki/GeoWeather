@@ -37,17 +37,20 @@ namespace GeoWeather
             List<string> WindDirections = new List<string> { "N", "NE", "NW", "E", "W", "SE", "S", "SW" };
             int selectWindDirection = random.Next(WindDirections.Count);
 
+            DateTime dateTime = DateTime.Now;
+
             string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "insert into stationData (station_id, temperatur, humidity, windSpeed, windDirection) values (@station_id,@temperatur, @humidity, @windSpeed, @windDirection)";
+                string query = "insert into stationData (station_id, timestamp, temperatur, humidity, windSpeed, windDirection) values (@station_id, @timestamp, @temperatur, @humidity, @windSpeed, @windDirection)";
 
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     //command.Parameters.AddWithValue("@station_id", random.Next(1, countIds));
                     command.Parameters.AddWithValue("@station_id", stationId);
+                    command.Parameters.AddWithValue("@timestamp", dateTime);
                     command.Parameters.AddWithValue("@temperatur", random.Next(-20, 40));
                     command.Parameters.AddWithValue("@humidity", random.Next(0, 100));
                     command.Parameters.AddWithValue("@windSpeed", random.Next(0, 150));

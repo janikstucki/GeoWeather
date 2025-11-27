@@ -10,6 +10,7 @@ namespace GeoWeather
     {
         public int DataId { get; set; }         
         public int StationId { get; set; }      
+        public DateTime Timestamp { get; set; }      
         public double Temperatur { get; set; }
         public double Humidity { get; set; }
         public double WindSpeed { get; set; }
@@ -17,7 +18,7 @@ namespace GeoWeather
 
         public override string ToString()
         {
-            return $"{DataId}: {Temperatur}°C, {Humidity}%, {WindSpeed} km/h, {WindDirection}";
+            return $"{Timestamp}: {Temperatur}°C, {Humidity}%, {WindSpeed} km/h, {WindDirection}";
         }
     }
 }

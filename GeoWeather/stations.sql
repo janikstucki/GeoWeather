@@ -23,6 +23,7 @@ create table stationData
 (
 	data_id int identity not null primary key,
 	station_id int not null foreign key references stations(station_id),
+	timestamp datetime default getdate() not null,
 	temperatur float not null,
 	humidity float not null,
 	windSpeed float not null,
@@ -42,3 +43,5 @@ go
 select * from  stations;
 go
 select * from stationData;
+
+
