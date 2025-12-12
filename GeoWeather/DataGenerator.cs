@@ -57,9 +57,6 @@ namespace GeoWeather
 
                     connection.Open();
                     command.ExecuteNonQuery();
-                    {
-                        MessageBox.Show("Data inserted successfully.");
-                    }
                 }
             }
         }

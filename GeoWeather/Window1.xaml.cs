@@ -50,9 +50,7 @@ namespace GeoWeather
                 {
                     string stationsJson = GetStations();
 
-                    // Stations setzen
                     await Browser.CoreWebView2.ExecuteScriptAsync($"window.stations = {stationsJson};");
-                    // Marker hinzufügen
                     await Browser.CoreWebView2.ExecuteScriptAsync("addMarkers(window.stations);");
                 };
 
@@ -64,7 +62,6 @@ namespace GeoWeather
             {
             Station s = new Station();
                 string stationName = e.TryGetWebMessageAsString();
-                MessageBox.Show($"Marker geklickt: {stationName}");
 
 
 
@@ -78,7 +75,7 @@ namespace GeoWeather
                     connection.Open();
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        if (reader.Read()) // nur 1 Zeile erwartet
+                        if (reader.Read()) 
                         {
                             s.Id = reader.GetInt32(0);
                             s.Name = stationName;
