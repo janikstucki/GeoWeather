@@ -41,14 +41,60 @@ namespace GeoWeather
 
             Loaded += async (s, e) =>
             {
-                await Browser.EnsureCoreWebView2Async(); 
-                string mapPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map.html");
-                Browser.CoreWebView2.Navigate(new Uri(mapPath).AbsoluteUri);
+                await Browser.EnsureCoreWebView2Async();
 
-                string stationsJson = GetStations();
-                string js = $"window.stations = {stationsJson};"; 
-                await Browser.CoreWebView2.ExecuteScriptAsync(js);
+                Browser.CoreWebView2.WebMessageReceived += CoreWebView2_WebMessageReceived;
+
+                string mapPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map.html");
+                Browser.CoreWebView2.NavigationCompleted += async (sender, args) =>
+                {
+                    string stationsJson = GetStations();
+
+                    // Stations setzen
+                    await Browser.CoreWebView2.ExecuteScriptAsync($"window.stations = {stationsJson};");
+                    // Marker hinzufügen
+                    await Browser.CoreWebView2.ExecuteScriptAsync("addMarkers(window.stations);");
+                };
+
+                Browser.CoreWebView2.Navigate(new Uri(mapPath).AbsoluteUri);
             };
         }
+
+        private void CoreWebView2_WebMessageReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
+            {
+            Station s = new Station();
+                string stationName = e.TryGetWebMessageAsString();
+                MessageBox.Show($"Marker geklickt: {stationName}");
+
+
+
+            string query = "SELECT station_id, xCoordinate, yCoordinate FROM stations where name = @stationName";
+            string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@stationName", stationName);
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read()) // nur 1 Zeile erwartet
+                        {
+                            s.Id = reader.GetInt32(0);
+                            s.Name = stationName;
+                            s.XCoordinate = reader.GetDouble(1);
+                            s.YCoordinate = reader.GetDouble(2);
+                        }
+                    }
+                }
+            }
+
+
+
+            StationOverview stationOverview = new StationOverview(s);
+                stationOverview.Show();
+                this.Close();
+            }
+
     }
 }

@@ -48,7 +48,6 @@ namespace GeoWeather
 
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    //command.Parameters.AddWithValue("@station_id", random.Next(1, countIds));
                     command.Parameters.AddWithValue("@station_id", stationId);
                     command.Parameters.AddWithValue("@timestamp", dateTime);
                     command.Parameters.AddWithValue("@temperatur", random.Next(-20, 40));

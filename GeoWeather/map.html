@@ -19,23 +19,25 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-
-
         const map = L.map('map').setView([47.0502, 8.3093], 7);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
         }).addTo(map);
 
-        // Marker für alle Stationen
-        if (window.stations) {
-            window.stations.forEach(station => {
-                L.marker([station.YCoordinate, station.XCoordinate])
+        function addMarkers(stations) {
+            stations.forEach(station => {
+                const marker = L.marker([station.YCoordinate, station.XCoordinate])
                     .addTo(map)
                     .bindPopup(station.Name);
+
+                marker.on('click', () => {
+                    console.log('Marker geklickt:', station.Name);
+                    window.chrome.webview.postMessage(station.Name);
+                });
             });
         }
-
     </script>
+
 </body>
 </html>
