@@ -19,18 +19,6 @@ namespace GeoWeather
         public int countIds = 0;
         private Random random = new Random();
 
-        public void GetStationIdCount()
-        {
-            string query = "SELECT COUNT(*) FROM stations";
-            string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                connection.Open();
-                countIds = (int)command.ExecuteScalar();
-            }
-        }
 
         public void GenerateData()
         {
