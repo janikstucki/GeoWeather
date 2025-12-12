@@ -20,9 +20,8 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
 
-        //const map = L.map('map').setView([47.3769, 8.5417], 10); // Zürich als Beispiel
 
-        const map = L.map('map').setView([47.3769, 8.5417], 10); // Zoom auf Zürich
+        const map = L.map('map').setView([47.0502, 8.3093], 7);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors'
@@ -33,7 +32,7 @@
             window.stations.forEach(station => {
                 L.marker([station.YCoordinate, station.XCoordinate])
                     .addTo(map)
-                    .bindPopup(station.name);
+                    .bindPopup(station.Name);
             });
         }
 

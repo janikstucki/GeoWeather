@@ -41,13 +41,12 @@ namespace GeoWeather
 
             Loaded += async (s, e) =>
             {
-                await Browser.EnsureCoreWebView2Async(); // kein Parameter!
+                await Browser.EnsureCoreWebView2Async(); 
                 string mapPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map.html");
                 Browser.CoreWebView2.Navigate(new Uri(mapPath).AbsoluteUri);
 
-                // Stationen als JS-Array übergeben
                 string stationsJson = GetStations();
-                string js = $"window.stations = {stationsJson};"; // global verfügbar im HTML/JS
+                string js = $"window.stations = {stationsJson};"; 
                 await Browser.CoreWebView2.ExecuteScriptAsync(js);
             };
         }
