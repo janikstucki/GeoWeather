@@ -71,6 +71,8 @@ namespace GeoWeather
           .Select(x => x.Timestamp)
           .OrderByDescending(x => x)
           .ToList();
+
+      WeatherDataNowLBL.Content = weatherNow.ToString();
     }
   }
 }
