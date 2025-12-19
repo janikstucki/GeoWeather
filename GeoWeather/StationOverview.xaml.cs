@@ -19,12 +19,12 @@ namespace GeoWeather
 
         private void LoadStationData(int stationId)
         {
-            List<StationData> data = new List<StationData>();
-
+            List<StationData> previousData = new List<StationData>();
+            StationData weatherNow = new StationData();
 
             string query = "SELECT data_id, station_id, timestamp, temperatur, humidity, windSpeed, windDirection " +
                            "FROM StationData WHERE station_id = @id " +
-                           "order by timestamp desc";
+                           "order by timestamp asc";
 
             string connectionString = @"data source=NOTEBOOK-JANIK\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
 
@@ -38,7 +38,7 @@ namespace GeoWeather
                     {
                         while (reader.Read())
                         {
-                            data.Add(new StationData
+                            weatherNow = new StationData
                             {
                                 DataId = reader.GetInt32(0),
                                 StationId = reader.GetInt32(1),
@@ -47,13 +47,27 @@ namespace GeoWeather
                                 Humidity = reader.GetDouble(4),
                                 WindSpeed = reader.GetDouble(5),
                                 WindDirection = reader.GetString(6)
+                            };
+
+
+                            previousData.Add(new StationData
+                            {
+                              DataId = reader.GetInt32(0),
+                              StationId = reader.GetInt32(1),
+                              Timestamp = reader.GetDateTime(2),
+                              Temperatur = reader.GetDouble(3),
+                              Humidity = reader.GetDouble(4),
+                              WindSpeed = reader.GetDouble(5),
+                              WindDirection = reader.GetString(6)
                             });
                         }
                     }
                 }
             }
-
-            stationsListBox.ItemsSource = data;
-        }
+      WeatherDataNowLBL.Content = weatherNow;
+        stationsListBox.ItemsSource = previousData
+            .Select(x => x.Timestamp)
+            .ToList();
     }
+  }
 }

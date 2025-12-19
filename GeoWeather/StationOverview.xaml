@@ -9,5 +9,6 @@
     <Grid>
         <Label x:Name="StationLBL" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <ListBox x:Name="stationsListBox" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="29,50,367,190" SelectionMode="Single"/>
-    </Grid>
+    <Label x:Name="WeatherDataNowLBL" Content="Label" HorizontalAlignment="Left" Margin="90,344,0,0" VerticalAlignment="Top"/>
+  </Grid>
 </Window>
