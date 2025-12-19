@@ -13,7 +13,10 @@ namespace GeoWeather
             DataGenerator generator = new DataGenerator(s.Id);
             generator.GenerateData();
 
-            StationLBL.Content = s.ToString();
+
+      StationLBL.Content = s.Name.ToString() + " ("
+                          + s.XCoordinate.ToString() + ", "
+                          + s.YCoordinate.ToString() + ")";
             LoadStationData(s.Id);
         }
 
