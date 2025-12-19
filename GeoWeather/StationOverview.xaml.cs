@@ -67,10 +67,10 @@ namespace GeoWeather
                     }
                 }
             }
-      WeatherDataNowLBL.Content = weatherNow;
-        stationsListBox.ItemsSource = previousData
-            .Select(x => x.Timestamp)
-            .ToList();
+      stationsListBox.ItemsSource = previousData
+          .Select(x => x.Timestamp)
+          .OrderByDescending(x => x)
+          .ToList();
     }
   }
 }
