@@ -40,7 +40,7 @@ namespace GeoWeather
 
         private void SubmitBTN_Click(object sender, RoutedEventArgs e)
         {
-            string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
+            string connectionString = @"data source=NOTEBOOK-JANIK\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

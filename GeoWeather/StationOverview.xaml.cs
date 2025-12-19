@@ -10,13 +10,11 @@ namespace GeoWeather
         {
             InitializeComponent();
 
+            DataGenerator generator = new DataGenerator(s.Id);
+            generator.GenerateData();
+
             StationLBL.Content = s.ToString();
             LoadStationData(s.Id);
-
-
-            DataGenerator generator = new DataGenerator(s.Id);
-
-            generator.GenerateData();
         }
 
         private void LoadStationData(int stationId)
@@ -28,7 +26,7 @@ namespace GeoWeather
                            "FROM StationData WHERE station_id = @id " +
                            "order by timestamp desc";
 
-            string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
+            string connectionString = @"data source=NOTEBOOK-JANIK\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {

@@ -13,7 +13,8 @@ namespace GeoWeather
             List<Station> stations = new List<Station>();
 
             string query = "SELECT name, xCoordinate, yCoordinate FROM stations";
-            string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
+            //string connectionString = @"data source=NOTEBOOK-JANIK\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
+            string connectionString = @"data source=NOTEBOOK-JANIK\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
@@ -66,7 +67,7 @@ namespace GeoWeather
 
 
             string query = "SELECT station_id, xCoordinate, yCoordinate FROM stations where name = @stationName";
-            string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
+            string connectionString = @"data source=NOTEBOOK-JANIK\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))

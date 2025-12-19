@@ -27,7 +27,7 @@ namespace GeoWeather
 
             DateTime dateTime = DateTime.Now;
 
-            string connectionString = @"data source=PC-Janik\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
+            string connectionString = @"data source=NOTEBOOK-JANIK\SQLEXPRESS;initial catalog=stations_db;trusted_connection=true;TrustServerCertificate=True";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -48,6 +48,6 @@ namespace GeoWeather
                 }
             }
         }
-    }
+  }
 
 }
